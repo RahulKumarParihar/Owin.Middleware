@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using Nancy;
+using Nancy.Owin;
 using Owin.Middleware.Middleware;
 
 namespace Owin.Middleware
@@ -26,6 +28,9 @@ namespace Owin.Middleware
                     Debug.Write("Request took: " + watch.ElapsedMilliseconds + " ms");
                 }
             });
+
+            app.UseNancy(config => config.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound));
+
             app.Use( async (ctx,next) =>
             {
                 await ctx.Response.WriteAsync("Hello World");
