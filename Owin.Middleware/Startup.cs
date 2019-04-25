@@ -31,10 +31,10 @@ namespace Owin.Middleware
 
             app.UseNancy(config => config.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound));
 
-            app.Use( async (ctx,next) =>
-            {
-                await ctx.Response.WriteAsync("Hello World");
-            });
+            //app.Use( async (ctx,next) =>
+            //{
+            //    await ctx.Response.WriteAsync("Hello World");
+            //});
         }
     }
 }
